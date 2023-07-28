@@ -83,9 +83,11 @@ def getMediaList():
         #filter out and only get TMDB id
         for result in tautulli_json:
             for guid in result['guids']:
-                if guid['id'].startswith('tmdb'):
-                    id_set.add(guid['id'].split('//')[1])
-
+                try:
+                    if guid['id'].startswith('tmdb'):
+                        id_set.add(guid['id'].split('//')[1])
+                except:
+                    print ("No ID")
     return id_set
 
 #get recommendations from id
